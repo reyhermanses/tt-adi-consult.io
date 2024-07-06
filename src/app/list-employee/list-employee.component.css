@@ -1,3 +1,45 @@
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Thin scrollbar for WebKit browsers */
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #c4c2c2;
+    border-radius: 2px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c4c2c2;
+  }
+  
+  /* Thin scrollbar for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #c4c2c2 #f1f1f1;
+  }
+  
+  /* Optional: Adjust scrollbar styles for IE/Edge */
+  * {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  
+  /* Smooth scrolling for specific elements */
+  .smooth-scroll {
+    overflow: auto;
+    scroll-behavior: smooth;
+  }
+  
+
 .btn {
     @apply font-bold py-2 px-4 rounded;
 }
