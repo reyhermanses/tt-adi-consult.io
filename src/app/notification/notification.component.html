@@ -1,0 +1,18 @@
+<div *ngIf="notification" [ngClass]="{
+    'bg-green-100 border-green-400 text-green-700': notification.type === 'success',
+    'bg-red-100 border-red-400 text-red-700': notification.type === 'error',
+    'bg-red-100 border-red-200 text-red-600': notification.type === 'delete',
+    'bg-blue-100 border-blue-400 text-blue-700': notification.type === 'info',
+    'bg-yellow-100 border-yellow-400 text-yellow-700': notification.type === 'warning',
+    'bg-yellow-100 border-yellow-200 text-yellow-600': notification.type === 'edit'
+  }" class="border px-4 py-3 rounded relative" role="alert">
+    <span class="block sm:inline">{{ notification.message }}</span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+      <svg (click)="clearNotification()" class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <title>Close</title>
+        <path d="M14.348 5.652a.5.5 0 01.707 0l4 4a.5.5 0 010 .707l-4 4a.5.5 0 01-.707-.707L17.293 10l-3.646-3.646a.5.5 0 010-.707z"/>
+        <path d="M5.652 5.652a.5.5 0 000 .707L9.707 10l-4.055 4.055a.5.5 0 00.707.707l4-4a.5.5 0 000-.707L6.707 5.652a.5.5 0 00-.707 0z"/>
+      </svg>
+    </span>
+  </div>
+  

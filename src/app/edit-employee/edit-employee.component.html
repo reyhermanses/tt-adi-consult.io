@@ -1,0 +1,158 @@
+<button class="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded" (click)="openModal()">
+    Update
+</button>
+
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!-- Background backdrop -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" *ngIf="this.show">
+    </div>
+
+    <!-- Modal panel -->
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto" *ngIf="this.show">
+        <!-- Modal content -->
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div
+                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <!-- Modal header and body -->
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <!-- Content here -->
+                    <h3 class="text-lg font-semibold leading-6 text-gray-900" id="modal-title">
+                        Update employee data
+                    </h3>
+                    <div class="mt-2">
+                        <form [formGroup]="employeeFormEdit" class="max-w-lg mx-auto mt-5" (ngSubmit)="onUpdate()">
+
+                            <div class="mb-4">
+                                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                                <input type="text" id="username" formControlName="username"
+                                    class="form-input mt-1 block w-full">
+                                <div
+                                    *ngIf="employeeFormEdit.get('username')?.invalid && employeeFormEdit.get('username')?.touched">
+                                    <small class="text-red-700">Valid username is required</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="firstName" class="block text-sm font-medium text-gray-700">First
+                                    Name</label>
+                                <input type="text" id="firstName" formControlName="firstName"
+                                    class="form-input mt-1 block w-full">
+                                <div
+                                    *ngIf="employeeFormEdit.get('firstName')?.invalid && employeeFormEdit.get('firstName')?.touched">
+                                    <small class="text-red-700">Valid first name is required</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <input type="text" id="lastName" formControlName="lastName"
+                                    class="form-input mt-1 block w-full">
+                                <div
+                                    *ngIf="employeeFormEdit.get('lastName')?.invalid && employeeFormEdit.get('lastName')?.touched">
+                                    <small class="text-red-700">Valid last name is required</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" formControlName="email"
+                                    class="form-input mt-1 block w-full">
+                                <div
+                                    *ngIf="employeeFormEdit.get('email')?.invalid && employeeFormEdit.get('email')?.touched">
+                                    <small class="text-red-700">Valid email is required</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="birthDate" class="block text-sm font-medium text-gray-700">Birth
+                                    Date</label>
+                                <input type="date" id="birthDate" formControlName="birthDate"
+                                    class="form-input mt-1 block w-full">
+                                <div
+                                    *ngIf="employeeFormEdit.get('birthDate')?.invalid && employeeFormEdit.get('birthDate')?.touched">
+                                    <small class="text-red-700">Valid birth date is required</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="basicSalary" class="block text-sm font-medium text-gray-700">Basic
+                                    Salary</label>
+                                <input type="number" id="basicSalary" formControlName="basicSalary"
+                                    class="form-input mt-1 block w-full">
+                                <div
+                                    *ngIf="employeeFormEdit.get('basicSalary')?.invalid && employeeFormEdit.get('basicSalary')?.touched">
+                                    <small class="text-red-700">Valid basic salary is required</small>
+                                </div>
+                            </div>
+
+                            <!-- <div class="mb-4">
+                                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                                <select id="status" formControlName="status" class="form-select mt-1 block w-full">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div> -->
+
+                            <div class="mb-4">
+                                <!-- <label for="status">Status</label>
+                                <input id="status" formControlName="status" class="form-control" />
+                                <div *ngIf="employeeForm.get('status')?.invalid && employeeForm.get('status')?.touched">
+                                    <small class="text-danger">Valid phone number is required</small>
+                                </div> -->
+                                <label for="status" class="block text-sm font-medium text-gray-700">Status
+                                    {{employeeFormEdit.get('status')?.valid}}</label>
+                                <select id="status" name="status" formControlName="status"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm form-control">
+                                    <option value="pilih">Pilih</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Archived">Archived</option>
+                                </select>
+                                <div
+                                    *ngIf="employeeFormEdit.get('status')?.invalid && employeeFormEdit.get('status')?.touched">
+                                    <small class="text-red-700">Valid status is required</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                               <label for="group" class="block text-sm font-medium text-gray-700">Group</label>
+                                <select id="group" name="group" formControlName="group"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm form-control">
+                                    <option value="active">Engineer</option>
+                                    <option value="inactive">Scientist</option>
+                                    <option value="pending">Architect</option>
+                                    <option value="archived">Analyst</option>
+                                </select>
+                                <div
+                                    *ngIf="employeeFormEdit.get('group')?.invalid && employeeFormEdit.get('group')?.touched">
+                                    <small class="text-red-700">Valid group is required</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="description"
+                                    class="block text-sm font-medium text-gray-700">Description</label>
+                                <textarea id="description" formControlName="description"
+                                    class="form-textarea mt-1 block w-full"></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <!-- <button type="button"
+            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+            >Deactivate</button> -->
+                    <button type="button" (click)="this.close()"
+                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

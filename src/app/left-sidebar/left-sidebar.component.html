@@ -1,0 +1,41 @@
+<!-- Sidebar -->
+<div class="bg-white text-gray-400 w-64 flex-none">
+    <!-- Sidebar Header -->
+    <div class="p-4 flex items-center">
+        <span class="text-lg font-semibold text-gray-700">Technical Test</span>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="flex-1">
+        <ul class="mt-2">
+            <!-- Menu Item -->
+            <li class="px-4 py-2">
+                <a class="block text-gray-500 p-2 hover:bg-blue-100" (click)="setIndex(1)">Dashboard</a>
+            </li>
+            <!-- Nested Menu (Collapsible) -->
+            <li class="px-4 py-2">
+                <button
+                    class="flex justify-between items-center border-gray-200 w-full p-2 text-gray-400 hover:bg-blue-100 focus:outline-none"
+                    (click)="toggleSubMenu()">
+                    <span>Manage </span>
+                    <svg class="-mr-1 h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <!-- Nested Menu Items (Hidden by default) -->
+                <ul class="ml-4 mt-2 {{this.isSubMenuOpen ? 'hidden' : ''}}">
+                    <li class="px-4 py-2">
+                        <a class="block text-gray-500 hover:bg-gray-200 p-2" (click)="setIndex(2)">Employees</a>
+                    </li>
+                    <!-- <li class="px-4 py-2">
+                        <a href="#" class="block text-gray-400 hover:bg-gray-200 p-2">Projects</a>
+                    </li> -->
+                </ul>
+            </li>
+
+            <!-- Add more menu items and nested menus as needed -->
+        </ul>
+    </nav>
+</div>

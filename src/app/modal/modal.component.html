@@ -1,0 +1,6 @@
+<div class="modal" [class.show]="show" (click)="onClose($event)">
+    <div class="modal-content" (click)="preventClose($event)">
+        <span class="close" (click)="close()">&times;</span>
+        <ng-content></ng-content>
+    </div>
+</div>

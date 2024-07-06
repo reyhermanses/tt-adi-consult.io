@@ -1,0 +1,15 @@
+<app-notification></app-notification>
+
+<div *ngIf="isLoggedIn()">
+  <div class="flex h-screen">
+    <left-sidebar-root></left-sidebar-root>
+    <div class="flex-1 flex flex-col">
+      <app-header></app-header>
+      <app-page-control></app-page-control>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isLoggedIn()">
+  <app-login></app-login>
+</div>

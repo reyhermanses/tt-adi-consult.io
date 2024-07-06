@@ -1,0 +1,142 @@
+<button class="btn btn-blue" (click)="openModal()">Create employee</button>
+
+<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!-- Background backdrop -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" *ngIf="this.show">
+    </div>
+
+    <!-- Modal panel -->
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto" *ngIf="this.show">
+        <!-- Modal content -->
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div
+                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <!-- Modal header and body -->
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <!-- Content here -->
+                    <h3 class="text-lg font-semibold leading-6 text-gray-900" id="modal-title">
+                        Create employee
+                    </h3>
+                    <div class="mt-2">
+                        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label for="username">Username {{!employeeForm.get('username')?.invalid}} {{employeeForm.get('username')?.touched}}</label>
+                                <input id="username" formControlName="username" class="form-control" />
+                                <div *ngIf="employeeForm.get('username')?.invalid && employeeForm.get('username')?.touched">
+                                    <small class="text-danger">First name is required</small>
+                                </div>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input id="firstName" formControlName="firstName" class="form-control" />
+                                <div *ngIf="employeeForm.get('firstName')?.invalid && employeeForm.get('firstName')?.touched">
+                                    <small class="text-danger">First name is required</small>
+                                </div>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input id="lastName" formControlName="lastName" class="form-control" />
+                                <div *ngIf="employeeForm.get('lastName')?.invalid && employeeForm.get('lastName')?.touched">
+                                    <small class="text-danger">Last name is required</small>
+                                </div>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" formControlName="email" class="form-control" />
+                                <div *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
+                                    <small class="text-danger">Valid email is required</small>
+                                </div>
+                            </div>
+                            <!-- 
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input id="phone" formControlName="phone" class="form-control" />
+                                <div *ngIf="employeeForm.get('phone')?.invalid && employeeForm.get('phone')?.touched">
+                                    <small class="text-danger">Valid phone number is required</small>
+                                </div>
+                            </div>
+                             -->
+                            <div class="form-group">
+                                <label for="birthDate">Birth Date</label>
+                                <input type="date" id="birthDate" formControlName="birthDate" class="form-control" />
+                                <div *ngIf="employeeForm.get('birthDate')?.invalid && employeeForm.get('birthDate')?.touched">
+                                    <small class="text-danger">Valid birth day is required</small>
+                                </div>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="basicSalary">Basic Salary</label>
+                                <input id="basicSalary" formControlName="basicSalary" class="form-control" />
+                                <div *ngIf="employeeForm.get('basicSalary')?.invalid && employeeForm.get('basicSalary')?.touched">
+                                    <small class="text-danger">Valid basic salary is required</small>
+                                </div>
+                            </div>
+                    
+                            <div class="form-group">
+                                <!-- <label for="status">Status</label>
+                                <input id="status" formControlName="status" class="form-control" />
+                                <div *ngIf="employeeForm.get('status')?.invalid && employeeForm.get('status')?.touched">
+                                    <small class="text-danger">Valid phone number is required</small>
+                                </div> -->
+                                <label for="status" class="block text-sm font-medium text-gray-700">Status {{employeeForm.get('status')?.valid}}</label>
+                                <select id="status" name="status" formControlName="status"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm form-control">
+                                    <option value="pilih">Pilih</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="archived">Archived</option>
+                                </select>
+                                <div *ngIf="employeeForm.get('status')?.invalid && employeeForm.get('status')?.touched">
+                                    <small class="text-danger">Valid status is required</small>
+                                </div>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="group" class="block text-sm font-medium text-gray-700">Group</label>
+                                <select id="group" name="group" formControlName="group"
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm form-control">
+                                    <option value="active">Engineer</option>
+                                    <option value="inactive">Scientist</option>
+                                    <option value="pending">Architect</option>
+                                    <option value="archived">Analyst</option>
+                                </select>
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <!-- <textarea id="description" name="description" formControlName="description" class="form-control max-w-full"></textarea> -->
+                                <textarea id="description" name="description" formControlName="description" style="height: 150px;" class="form-control w-full"></textarea>
+                                <div *ngIf="employeeForm.get('description')?.invalid && employeeForm.get('description')?.touched">
+                                    <small class="text-danger">Valid description number is required</small>
+                                </div>
+                            </div>
+                    
+                            <!-- <div class="form-group">
+                                <label for="position">Position</label>
+                                <input id="position" formControlName="position" class="form-control" />
+                                <div *ngIf="employeeForm.get('position')?.invalid && employeeForm.get('position')?.touched">
+                                    <small class="text-danger">Position is required</small>
+                                </div>
+                            </div> -->
+                    
+                            <button type="submit" class="btn btn-primary {{employeeForm.invalid ? 'btn-grey' : 'btn-blue'}}"
+                                [disabled]="employeeForm.invalid">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Modal footer -->
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <!-- <button type="button"
+            class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+            >Deactivate</button> -->
+                    <button type="button" (click)="this.close()"
+                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
