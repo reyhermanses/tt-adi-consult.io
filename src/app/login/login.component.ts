@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationService, NotificationType } from '../services/notification.service';
+import { NotificationService2 } from '../services/notification2.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent extends AuthService {
   isLogged!: boolean;
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private notificationService: NotificationService) {
+  constructor(private fb: FormBuilder, private notificationService2: NotificationService2) {
     super();
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -27,9 +28,9 @@ export class LoginComponent extends AuthService {
     this.isLogged = this.login(this.loginForm.value.username, this.loginForm.value.password)
     // console.log(this.isLogged)
     if (this.isLogged) {
-      this.notificationService.showNotification(NotificationType.Success, 'Login successfully!');
+      this.notificationService2.showSuccess('Login successfully!');
     } else {
-      this.notificationService.showNotification(NotificationType.Error, 'Check Username and Password!');
+      this.notificationService2.showError('Check Username and Password!');
     }
   }
 
