@@ -7,6 +7,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { ListEmployee } from '../list-employee/list-employee.component';
 import { NotificationService , Notification, NotificationType} from '../services/notification.service';
 import { birthDateValidator } from '../validators/date.validator';
+import { NotificationService2 } from '../services/notification2.service';
 
 @Component({
   selector: 'app-form-employee',
@@ -22,7 +23,7 @@ export class CreateEmployeeComponent extends ModalComponent {
   listEmployee!: ListEmployee;
   // modalComponent: ModalComponent;
 
-  constructor(private fb: FormBuilder, private empSrv: EmployeeService, private listEmpSrv: ListEmployee,private notificationService: NotificationService) {
+  constructor(private fb: FormBuilder, private empSrv: EmployeeService, private listEmpSrv: ListEmployee,private notificationService2: NotificationService2) {
     // this.modalComponent = pMModalComponent;
     super();
     this.employeeForm = this.fb.group({
@@ -63,7 +64,7 @@ export class CreateEmployeeComponent extends ModalComponent {
       const newValue = { ...oldValue, id: this.listEmpSrv.employees.length + 1 }
       this.employeeService.addEmployee(newValue)
       this.listEmpSrv.setPage(this.listEmpSrv.totalPage)
-      this.notificationService.showNotification(NotificationType.Success, 'Form created successfully!');
+      this.notificationService2.showSuccess('Form created successfully!');
       this.close();
     }
     else {

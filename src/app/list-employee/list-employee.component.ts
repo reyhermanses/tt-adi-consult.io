@@ -9,6 +9,7 @@ import { DetailEmployeeComponent } from '../detail-employee/detail-employee.comp
 import { EmployeeEditComponent } from "../edit-employee/edit-employee.component";
 import { DetailEmployeeV2Component } from "../detail-employee-v2/detail-employee-v2.component";
 import { NotificationService, NotificationType } from '../services/notification.service';
+import { NotificationService2 } from '../services/notification2.service';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class ListEmployee extends ModalComponent {
     updateEmployee!: EmployeeEditComponent;
     getUpdateEmp!: Employee;
 
-    constructor(private employeeService: EmployeeService, private notificationService: NotificationService) {
+    constructor(private employeeService: EmployeeService, private notificationService2: NotificationService2) {
         super();
         this.employees = this.employeeService.getEmployees();
         this.setPage(this.currentPage)
@@ -44,7 +45,7 @@ export class ListEmployee extends ModalComponent {
     deleteEmployee(id: string): void {
         this.employeeService.deleteEmployee(id)
         this.employees = this.employeeService.getEmployees();
-        this.notificationService.showNotification(NotificationType.Delete, 'Form deleted successfully!');
+        this.notificationService2.showDeleteSuccess('Form deleted successfully!');
         this.setPage(this.currentPage)
     }
 

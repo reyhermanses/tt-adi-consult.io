@@ -1,57 +1,50 @@
 <div class="container bg-blue-100 p-4 sm:p-6 lg:p-10 rounded-md mx-auto">
     <div class="flex justify-center">
-        <div class="overflow-y-auto mx-auto">
+        <div class="overflow-auto w-full">
             <br />
             <app-form-employee></app-form-employee>
             <br />
-            <div  class="overflow-y-auto mx-auto w-full bg-white" style="max-height: 400px;">
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="px-4 py-2">ID</th>
-                                <th class="px-4 py-2">Name</th>
-                                <th class="px-4 py-2">Email</th>
-                                <th class="px-4 py-2">Birth Date</th>
-                                <th class="px-4 py-2">Basic Salary</th>
-                                <th class="px-4 py-2">Status</th>
-                                <th class="px-4 py-2">Group</th>
-                                <th class="px-4 py-2">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white">
-                            <tr *ngFor="let employee of pagedEmployees">
-                                <td class="border px-4 py-2 text-center">{{ employee.id }}</td>
-                                <td class="border px-4 py-2 text-center">{{ employee.firstName }} {{ employee.lastName }}</td>
-                                <td class="border px-4 py-2 text-center">{{ employee.email }}</td>
-                                <td class="border px-4 py-2 text-center">{{ employee.birthDate | date }}</td>
-                                <td class="border px-4 py-2 text-center">{{ employee.basicSalary | currency: 'IDR' }}</td>
-                                <td class="border px-4 py-2 text-center">{{ employee.status }}</td>
-                                <td class="border px-4 py-2 text-center">{{ employee.group }}</td>
-                                <td class="border px-4 py-2 text-center">
-                                    <button class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded"
-                                        (click)="deleteEmployee(employee.id)">
+            <div class="overflow-auto bg-white" style="max-height: 400px;">
+                <table class="table-auto w-full">
+                    <thead class="bg-gray-50 sticky top-0 z-1">
+                        <tr>
+                            <th class="px-4 py-2">ID</th>
+                            <th class="px-4 py-2">Name</th>
+                            <th class="px-4 py-2">Email</th>
+                            <th class="px-4 py-2">Birth Date</th>
+                            <th class="px-4 py-2">Basic Salary</th>
+                            <th class="px-4 py-2">Status</th>
+                            <th class="px-4 py-2">Group</th>
+                            <th class="px-4 py-2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white">
+                        <tr *ngFor="let employee of pagedEmployees">
+                            <td class="border px-4 py-2 text-center">{{ employee.id }}</td>
+                            <td class="border px-4 py-2 text-center">{{ employee.firstName }} {{ employee.lastName }}</td>
+                            <td class="border px-4 py-2 text-center">{{ employee.email }}</td>
+                            <td class="border px-4 py-2 text-center">{{ employee.birthDate | date }}</td>
+                            <td class="border px-4 py-2 text-center">{{ employee.basicSalary | currency: 'IDR' }}</td>
+                            <td class="border px-4 py-2 text-center">{{ employee.status }}</td>
+                            <td class="border px-4 py-2 text-center">{{ employee.group }}</td>
+                            <td class="border px-4 py-2 text-center">
+                                <div class="flex justify-center space-x-4">
+                                    <button class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded" (click)="deleteEmployee(employee.id)">
                                         Delete
                                     </button>
-                                </td>
-                                <td class="border px-4 py-2">
                                     <app-edit-employee [employeeId]="employee.id"></app-edit-employee>
-                                </td>
-                                <td class="border px-4 py-2">
                                     <app-detail-employee-v2 [employeeId]="employee.id"></app-detail-employee-v2>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
                 <div class="flex flex-1 justify-between sm:hidden">
-                    <a href="#"
-                        class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-                    <a href="#"
-                        class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+                    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+                    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
                 </div>
                 <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                     <div>
