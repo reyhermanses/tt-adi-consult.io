@@ -41,6 +41,8 @@ export class CreateEmployeeComponent extends ModalComponent {
 
     this.employeeService = empSrv;
     this.listEmployee = listEmpSrv;
+
+    this.employeeService.getEmployees();
   }
 
   ngOnInit():void{
@@ -54,6 +56,7 @@ export class CreateEmployeeComponent extends ModalComponent {
   }
 
   openModal() {
+    // this.listEmployee.employees()
     this.show = true
   }
 
