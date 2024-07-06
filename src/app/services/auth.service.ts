@@ -50,6 +50,7 @@ export class AuthService extends LocalStorageService {
     // this.isAuthenticated = false;
     console.log('hitted!')
     this.removeItem(this.key)
+    this.removeItem('setPageIndex')
     this.isLoggedIn()
   }
 

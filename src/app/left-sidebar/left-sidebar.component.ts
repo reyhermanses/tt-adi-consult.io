@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageControlService } from '../services/page-control.service';
+import { LocalStorageService } from '../services/localstorage.service';
 
 @Component({
     selector: 'left-sidebar-root',
@@ -15,8 +16,12 @@ export class LeftSidebar {
     pageIndex: number = 1;
     appComponent: any;
     // pageControl : PageControlComponent;
+    locStr: LocalStorageService
 
-    constructor(private pageControlService: PageControlService) { }
+    constructor(private pageControlService: PageControlService, localStorage: LocalStorageService) { 
+        this.locStr = localStorage
+        this.getPageIndex()
+    }
 
     toggleSubMenu() {
         console.log('toogleSubMenu')
@@ -25,8 +30,13 @@ export class LeftSidebar {
     }
 
     setIndex(pageIndex: number): void {
-        // console.log(pageIndex)
-        // this.pageControl.setPageIndex(pageIndex);
+        console.log(pageIndex);
+        this.locStr.removeItem('setPageIndex')
         this.pageControlService.changePageIndex(pageIndex);
+        this.locStr.setItem('setPageIndex', pageIndex);
+    }
+
+    getPageIndex(){
+        console.log('get page index', this.locStr.getItem('setPageIndex'))
     }
 }
