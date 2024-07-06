@@ -26,9 +26,11 @@ export class LoginComponent extends AuthService {
   onSubmit() {
     this.isLogged = this.login(this.loginForm.value.username, this.loginForm.value.password)
     // console.log(this.isLogged)
-    if (this.isLogged)
+    if (this.isLogged) {
       this.notificationService.showNotification(NotificationType.Success, 'Login successfully!');
-    this.notificationService.showNotification(NotificationType.Error, 'Check Username and Password!');
+    } else {
+      this.notificationService.showNotification(NotificationType.Error, 'Check Username and Password!');
+    }
   }
 
 }
