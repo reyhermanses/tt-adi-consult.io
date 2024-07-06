@@ -20,7 +20,7 @@
                     <div class="mt-2">
                         <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
                             <div class="form-group">
-                                <label for="username">Username {{!employeeForm.get('username')?.invalid}} {{employeeForm.get('username')?.touched}}</label>
+                                <label for="username">Username</label>
                                 <input id="username" formControlName="username" class="form-control" />
                                 <div *ngIf="employeeForm.get('username')?.invalid && employeeForm.get('username')?.touched">
                                     <small class="text-danger">First name is required</small>
@@ -81,7 +81,7 @@
                                 <div *ngIf="employeeForm.get('status')?.invalid && employeeForm.get('status')?.touched">
                                     <small class="text-danger">Valid phone number is required</small>
                                 </div> -->
-                                <label for="status" class="block text-sm font-medium text-gray-700">Status {{employeeForm.get('status')?.valid}}</label>
+                                <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                                 <select id="status" name="status" formControlName="status"
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm form-control">
                                     <option value="pilih">Pilih</option>

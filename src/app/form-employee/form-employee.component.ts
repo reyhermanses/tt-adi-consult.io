@@ -6,6 +6,7 @@ import { EmployeeService } from '../services/employee.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ListEmployee } from '../list-employee/list-employee.component';
 import { NotificationService , Notification, NotificationType} from '../services/notification.service';
+import { birthDateValidator } from '../validators/date.validator';
 
 @Component({
   selector: 'app-form-employee',
@@ -26,14 +27,14 @@ export class CreateEmployeeComponent extends ModalComponent {
     super();
     this.employeeForm = this.fb.group({
       id: [],
-      username: ['reyhermanses', Validators.required],
-      firstName: ['rey', Validators.required],
-      lastName: ['hermanses', Validators.required],
-      email: ['rey.undot@gmail.com', [Validators.required, Validators.email]],
-      birthDate: ['1988-08-08', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
-      basicSalary: ['1900000', [Validators.required, Validators.pattern(/^[1-9][0-9]*$/)]],
-      status: ['Active', [Validators.required]],
-      group: ['Architecture', [Validators.required]],
+      username: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      birthDate: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/), birthDateValidator()]],
+      basicSalary: ['', [Validators.required, Validators.pattern(/^[1-9][0-9]*$/)]],
+      status: ['', [Validators.required]],
+      group: ['', [Validators.required]],
       description: ['']
     });
 

@@ -7,6 +7,7 @@ import { EmployeeService } from '../services/employee.service';
 import { ListEmployee } from '../list-employee/list-employee.component';
 import moment from 'moment';
 import { NotificationService, NotificationType } from '../services/notification.service';
+import { birthDateValidator } from '../validators/date.validator';
 
 @Component({
   selector: 'app-edit-employee',
@@ -38,7 +39,7 @@ export class EmployeeEditComponent extends ModalComponent implements OnInit {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        birthDate: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
+        birthDate: ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/), birthDateValidator()]],
         basicSalary: ['', [Validators.required, Validators.pattern(/^[1-9][0-9]*$/)]],
         status: ['', [Validators.required]],
         group: ['', [Validators.required]],
