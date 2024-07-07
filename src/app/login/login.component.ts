@@ -15,6 +15,7 @@ import { NotificationService2 } from '../services/notification2.service';
 export class LoginComponent extends AuthService {
   isLogged!: boolean;
   loginForm!: FormGroup;
+  hide!: boolean;
 
   constructor(private fb: FormBuilder, private notificationService2: NotificationService2) {
     super();
@@ -32,6 +33,10 @@ export class LoginComponent extends AuthService {
     } else {
       this.notificationService2.showError('Check Username and Password!');
     }
+  }
+
+  togglePasswordVisibility() {
+    this.hide = !this.hide
   }
 
 }
