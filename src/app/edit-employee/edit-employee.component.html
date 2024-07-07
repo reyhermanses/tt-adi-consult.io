@@ -103,7 +103,6 @@
                                     {{employeeFormEdit.get('status')?.valid}}</label>
                                 <select id="status" name="status" formControlName="status"
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm form-control">
-                                    <option value="pilih">Pilih</option>
                                     <option value="Active">Active</option>
                                     <option value="Inactive">Inactive</option>
                                     <option value="Pending">Pending</option>
@@ -116,13 +115,21 @@
                             </div>
 
                             <div class="mb-4">
-                               <label for="group" class="block text-sm font-medium text-gray-700">Group</label>
+                                <label for="group" class="block text-sm font-medium text-gray-700">Group</label>
                                 <select id="group" name="group" formControlName="group"
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm form-control">
-                                    <option value="active">Engineer</option>
-                                    <option value="inactive">Scientist</option>
-                                    <option value="pending">Architect</option>
-                                    <option value="archived">Analyst</option>
+                                    <option value="Engineer">Engineer</option>
+                                    <option value="Scientist">Scientist</option>
+                                    <option value="Developer">Developer</option>
+                                    <option value="Analyst">Analyst</option>
+                                    <option value="Specialist">Specialist</option>
+                                    <option value="Technician">Technician</option>
+                                    <option value="Architect">Architect</option>
+                                    <option value="Consultant">Consultant</option>
+                                    <option value="Manager">Manager</option>
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Coordinator">Coordinator</option>
+                                    <option value="Designer">Designer</option>
                                 </select>
                                 <div
                                     *ngIf="employeeFormEdit.get('group')?.invalid && employeeFormEdit.get('group')?.touched">

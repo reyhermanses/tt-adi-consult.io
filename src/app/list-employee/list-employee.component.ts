@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../services/employee.service';
 import { CommonModule } from '@angular/common';
@@ -10,6 +10,7 @@ import { EmployeeEditComponent } from "../edit-employee/edit-employee.component"
 import { DetailEmployeeV2Component } from "../detail-employee-v2/detail-employee-v2.component";
 import { NotificationService, NotificationType } from '../services/notification.service';
 import { NotificationService2 } from '../services/notification2.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 
 @Component({
@@ -17,11 +18,12 @@ import { NotificationService2 } from '../services/notification2.service';
     standalone: true,
     templateUrl: './list-employee.component.html',
     styleUrl: './list-employee.component.css',
-    imports: [DetailEmployeeV2Component, DetailEmployeeComponent, EmployeeEditComponent, CreateEmployeeComponent, CommonModule]
+    imports: [DetailEmployeeV2Component, DetailEmployeeComponent, EmployeeEditComponent, CreateEmployeeComponent, CommonModule, ReactiveFormsModule]
 })
 
-export class ListEmployee extends ModalComponent {
+export class ListEmployee extends ModalComponent implements OnInit {
     // fb:FormBuilder;
+    searchForm: FormGroup;
     title = 'emp-mng';
     employees!: Employee[];
     pagedEmployees!: Employee[];
@@ -35,11 +37,26 @@ export class ListEmployee extends ModalComponent {
     updateEmployee!: EmployeeEditComponent;
     getUpdateEmp!: Employee;
 
-    constructor(private employeeService: EmployeeService, private notificationService2: NotificationService2) {
+    constructor(private fb: FormBuilder, private employeeService: EmployeeService, private notificationService2: NotificationService2) {
         super();
+        this.searchForm = this.fb.group({
+            searchTerm: ['']
+        })
+    }
+
+    ngOnInit(): void {
+
+
         this.employees = this.employeeService.getEmployees();
         this.setPage(this.currentPage)
         this.totalPage = Math.ceil(this.employees.length / this.itemsPerPage)
+
+        this.searchForm.get('searchTerm')!.valueChanges.subscribe(() => {
+            // if (this.searchForm.value.searchTerm) {
+            this.searchEmployees();
+            // } else {
+            // }
+        });
     }
 
     deleteEmployee(id: string): void {
@@ -56,6 +73,19 @@ export class ListEmployee extends ModalComponent {
         this.currentPage = page;
         this.pagedEmployees = this.employees.slice(startIndex, endIndex);
         this.totalPage = Math.ceil(this.employees.length / this.itemsPerPage);
+    }
+
+    searchEmployees() {
+        const searchTerm = this.searchForm.get('searchTerm')!.value.toLowerCase();
+        if (searchTerm) {
+            this.pagedEmployees = this.employees.filter(employee =>
+                employee.firstName.toLowerCase().includes(searchTerm) ||
+                employee.lastName.toLowerCase().includes(searchTerm) ||
+                employee.email.toLowerCase().includes(searchTerm)
+            );
+        } else {
+            // this.setPage(this.currentPage);
+        }
     }
 
     hasNextPage(): boolean {
