@@ -31,4 +31,19 @@ export class EmployeeService {
   deleteEmployee(id: string): void {
     this.employees = this.employees.filter(emp => emp.id !== id);
   }
+
+  getActive() {
+    return this.employees.filter(emp => emp.status === "Active")
+  }
+
+  getInActive() {
+    return this.employees.filter(emp => emp.status === "Inactive")
+  }
+
+  getPending() {
+    return this.employees.filter(emp => emp.status === "Pending")
+  }
+  getArchived() {
+    return this.employees.filter(emp => emp.status === "Archived")
+  }
 }

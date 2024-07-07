@@ -15,12 +15,21 @@ export class Dashboard {
 
     employeeService: any;
     totalEmp: number;
+    totalActive: number = 0;
+    totalInActive: number = 0;
+    totalPending: number = 0;
+    totalArchived: number = 0;
 
     constructor(private empSrv: EmployeeService) {
         this.employeeService = empSrv
         this.totalEmp = this.employeeService.employees.length
+        this.totalActive = this.employeeService.getActive().length;
+        this.totalInActive = this.employeeService.getInActive().length;
+        this.totalPending = this.employeeService.getPending().length;
+        this.totalArchived = this.employeeService.getArchived().length;
+        // console.log(this.employeeService.getActive());
     }
 
-    totalEmployee(): void {
+    getActive() {
     }
 }
