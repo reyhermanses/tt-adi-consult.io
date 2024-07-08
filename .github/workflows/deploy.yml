@@ -22,11 +22,11 @@ jobs:
       run: npm install
 
     - name: Build the Angular project
-      run: npm run build -- --output-path=dist --base-href=/your-repo-name/  # Ensure base-href is set correctly
+      run: npm run build -- --output-path=dist --base-href=/tt-adi-consult.io/  # Ensure base-href is set correctly
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.ACCESS_TOKEN }}
         publish_dir: ./dist
-        cname: your-custom-domain.com  # Optional: If you are using a custom domain
+        cname: https://reyhermanses.github.io/tt-adi-consult.io/  # Optional: If you are using a custom domain
