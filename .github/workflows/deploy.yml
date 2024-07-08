@@ -26,7 +26,7 @@ jobs:
 
     - name: Build the Angular project
       # run: ng build --output-path=dist --base-href=/reyhermanses.github.io/
-      run: ng build --output-path --base-href /reyhermanses.github.io/
+      run: ng build --output-path=dist --base-href=/reyhermanses.github.io/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
