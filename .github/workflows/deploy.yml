@@ -25,7 +25,7 @@ jobs:
       run: npm install -g @angular/cli
 
     - name: Build the Angular project
-      run: ng build --output-path=dist --base-href=/tt-adi-consult.io/
+      run: ng build --output-path=dist --base-href=/reyhermanses.github.io/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
