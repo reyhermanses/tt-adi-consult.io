@@ -21,7 +21,7 @@ export const employeesData: Employee[] = [
         email: 'jane.smith@example.com',
         birthDate: new Date('1991-02-15'),
         basicSalary: 60000,
-        status: 'Active',
+        status: 'Non-Active',
         group: 'Marketing',
         description: 'Marketing Manager'
     },
