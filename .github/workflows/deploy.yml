@@ -21,12 +21,14 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Install Angular CLI
+      run: npm install -g @angular/cli
+
     - name: Build the Angular project
-      run: npm run build -- --output-path=dist --base-href=/reyhermanses.github.io/  # Ensure base-href is set correctly
+      run: ng build --output-path=dist --base-href=/tt-adi-consult.io/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.ACCESS_TOKEN }}
         publish_dir: ./dist
-        # cname: https://reyhermanses.github.io/tt-adi-consult.io/  #Optional: If you are using a custom domain
